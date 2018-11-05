@@ -2,5 +2,17 @@
 <project name="antProject.makejar" default="makejar" basedir=".">
   <target name ="makejar" description="Create a jar for the HW project">
     <jar jarfile="HelloWorld.jar" includes="*.class" basedir="bin"/>
+  	<javac includeantruntime = "false" srcdir = "./antProject" destdir = "staging" classpath = "/usr/bin/junit"/>
   </target>
+	
+	<target  name = "runjunit" depends = "makejar">
+		<junit>
+			<test name = "antProject.helloWorldTests"/>
+			<classpath>
+				<pathelement location = "/usr/bin/junit"/>
+				<pathelement location = "staging"/>
+			</classpath>	
+			
+		</junit>
+	</target>
 </project>
